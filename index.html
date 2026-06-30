@@ -6,161 +6,135 @@
 <title>Year Plan · Build · Grow · Launch</title>
 <style>
 :root{
-  /* Matt's Lesson Hub palette */
   --green:#16a34a; --blue:#2563eb; --orange:#f97316; --purple:#7c3aed; --teal:#0d9488;
-  --navy-dark:#0f1e33; --slate900:#0f172a; --slate700:#334155;
-  --bg:#f8fafc; --card:#ffffff; --ink:#0f172a; --muted:#64748b; --border:#e2e8f0; --chip:#eaeef4;
+  --navy-dark:#0f1e33; --slate900:#0f172a;
+  --bg:#f8fafc; --card:#ffffff; --ink:#0f172a; --muted:#64748b; --border:#e2e8f0;
   --hero-blue:#3b9eff;
   --build:#2563eb; --grow:#16a34a; --launch:#f97316;
-  --radius:16px; --ease:cubic-bezier(.22,1,.36,1);
-  --ticker-bg:#16a34a;
+  --radius:16px; --ease:cubic-bezier(.22,1,.36,1); --ticker-bg:#16a34a;
   --shadow:0 16px 38px -22px rgba(15,30,55,.35);
 }
 [data-theme="dark"]{
-  --bg:#0a1424; --card:#0f2138; --ink:#eaf1fb; --muted:#9fb2cc; --border:rgba(255,255,255,.09); --chip:rgba(255,255,255,.06);
+  --bg:#0a1424; --card:#0f2138; --ink:#eaf1fb; --muted:#9fb2cc; --border:rgba(255,255,255,.09);
   --shadow:0 18px 40px -22px rgba(0,0,0,.7);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-  background:var(--bg); color:var(--ink); line-height:1.5; min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);
+  line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
 
-/* ---------- ticker ---------- */
+/* ticker */
 .ticker{width:100%;overflow:hidden;background:var(--ticker-bg);border-bottom:1px solid rgba(0,0,0,.12);position:relative;z-index:100}
 .ticker-track{display:flex;white-space:nowrap;padding-left:100%;animation:marquee 30s linear infinite;color:#fff;
   font-weight:700;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;padding-top:11px;padding-bottom:11px}
 .ticker:hover .ticker-track{animation-play-state:paused}
 .ticker-text{display:flex;align-items:center;gap:22px;padding-right:48px}
-.ticker-text b{opacity:.65;font-weight:700}
+.ticker-text b{opacity:.65}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
-/* ---------- hero (always dark) ---------- */
-.hero{
-  position:relative; overflow:hidden; padding:30px 0 56px;
-  background:
-    radial-gradient(120% 130% at 88% -20%,rgba(59,158,255,.20),transparent 55%),
+/* hero (always dark) */
+.hero{position:relative;overflow:hidden;padding:30px 0 54px;color:#eaf1fb;
+  background:radial-gradient(120% 130% at 88% -20%,rgba(59,158,255,.20),transparent 55%),
     radial-gradient(90% 120% at -5% 120%,rgba(22,163,74,.18),transparent 52%),
-    linear-gradient(165deg,#16335a,var(--navy-dark) 70%);
-  color:#eaf1fb;
-}
+    linear-gradient(165deg,#16335a,var(--navy-dark) 70%)}
 .hero::after{content:"";position:absolute;inset:0;opacity:.6;pointer-events:none;
   background:repeating-linear-gradient(118deg,transparent 0 42px,rgba(255,255,255,.02) 42px 43px)}
 .hero-inner{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-.hero-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:34px}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:32px}
 .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--hero-blue)}
 .eyebrow::before{content:"";width:28px;height:2px;background:var(--hero-blue);border-radius:2px}
 .controls{display:flex;align-items:center;gap:10px}
-.hublink{display:inline-flex;align-items:center;gap:8px;text-decoration:none;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#eaf1fb;
-  font-size:.84rem;font-weight:600;padding:9px 15px;border-radius:12px;transition:.2s var(--ease)}
+.hublink{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.16);color:#eaf1fb;font-size:.84rem;font-weight:600;padding:9px 15px;border-radius:12px;transition:.2s var(--ease)}
 .hublink:hover{background:rgba(255,255,255,.13);transform:translateY(-1px)}
-.toggle{width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.16);
-  background:rgba(255,255,255,.07);color:#eaf1fb;cursor:pointer;font-size:16px;display:grid;place-items:center;transition:.2s var(--ease)}
+.toggle{width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);
+  color:#eaf1fb;cursor:pointer;font-size:16px;display:grid;place-items:center;transition:.2s var(--ease)}
 .toggle:hover{background:rgba(255,255,255,.13);transform:translateY(-1px)}
 .hero h1{font-size:clamp(40px,6.2vw,70px);font-weight:700;line-height:1.02;letter-spacing:-.022em}
-.hero h1 b{color:var(--hero-blue);font-weight:700}
-.hero p{max-width:580px;margin-top:16px;color:#9fb2cc;font-size:1.06rem}
+.hero h1 b{color:var(--hero-blue)}
+.hero p{max-width:600px;margin-top:16px;color:#9fb2cc;font-size:1.06rem}
 .hero p b{color:#cfe0f5;font-weight:600}
 .stats{display:flex;flex-wrap:wrap;gap:11px;margin-top:30px}
-.stat{display:inline-flex;align-items:center;gap:9px;padding:10px 17px;border-radius:999px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);font-size:.86rem;font-weight:500;color:#eaf1fb}
+.stat{display:inline-flex;align-items:center;gap:9px;padding:10px 17px;border-radius:999px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.15);font-size:.86rem;font-weight:500;color:#eaf1fb}
 .stat .ph{display:inline-flex;gap:4px}
 .stat .ph i{width:9px;height:9px;border-radius:50%;display:inline-block}
 
-/* ---------- container ---------- */
+/* container */
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px}
-.sec-head{display:flex;align-items:baseline;gap:12px;margin:40px 2px 20px}
-.sec-head h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
-.sec-head span{color:var(--muted);font-size:.9rem}
 
-/* ---------- tiles ---------- */
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:18px}
-.tile{--accent:var(--green);position:relative;text-align:left;cursor:pointer;overflow:hidden;
-  padding:24px 22px 20px;border-radius:var(--radius);background:var(--card);border:1px solid var(--border);
-  color:var(--ink);font-family:inherit;transition:.24s var(--ease);display:flex;flex-direction:column;gap:5px;min-height:176px;
-  animation:rise .5s var(--ease) both}
-.tile::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--accent)}
-.tile::after{content:"";position:absolute;right:-34px;bottom:-34px;width:128px;height:128px;border-radius:50%;
-  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 24%,transparent),transparent 70%);opacity:0;transition:.25s var(--ease)}
-.tile:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 50%,var(--border));box-shadow:var(--shadow)}
-.tile:hover::after{opacity:1}
-.tile:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.tile-icon{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;font-size:26px;margin-bottom:8px;
+/* phase sections */
+.phase-sec{margin-top:42px}
+.phase-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 2px 18px;
+  border-bottom:2px solid color-mix(in srgb,var(--accent) 32%,transparent);padding-bottom:12px}
+.phase-head .num{font-size:.82rem;font-weight:700;color:var(--accent);letter-spacing:.12em}
+.phase-head h2{font-size:1.75rem;font-weight:700;color:var(--accent);letter-spacing:-.015em}
+.phase-head .blurb{color:var(--muted);font-size:.92rem;margin-left:auto}
+
+/* folder cards */
+.folders{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.folder{position:relative;text-align:left;cursor:pointer;overflow:hidden;padding:22px 20px 18px;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--border);color:var(--ink);font-family:inherit;transition:.22s var(--ease);
+  display:flex;flex-direction:column;gap:5px;min-height:150px;animation:rise .5s var(--ease) both}
+.folder::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--accent)}
+.folder:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 50%,var(--border));box-shadow:var(--shadow)}
+.folder:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.folder .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:23px;margin-bottom:6px;
   background:color-mix(in srgb,var(--accent) 14%,transparent)}
-.tile-name{font-size:1.28rem;font-weight:700}
-.tile-tag{font-size:.85rem;color:var(--muted)}
-.tile-status{margin-top:auto;font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
-  color:#fff;background:var(--accent);align-self:flex-start;padding:4px 11px;border-radius:999px}
-.tile-status.soft{color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+.folder .fname{font-size:1.18rem;font-weight:700}
+.folder .count{margin-top:auto;font-size:.78rem;font-weight:600;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
+.folder .count .chev{color:var(--accent);font-size:1.1rem;line-height:1;transition:.2s var(--ease)}
+.folder:hover .count .chev{transform:translateX(3px)}
 
-/* ---------- subject banner (always dark) ---------- */
-.subj-banner{position:relative;overflow:hidden;
-  background:linear-gradient(160deg,#16335a,var(--navy-dark) 75%);color:#eaf1fb;padding:26px 0 30px}
-.subj-banner::after{content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;
+/* view banner (folder view) */
+.banner{position:relative;overflow:hidden;color:#eaf1fb;padding:26px 0 30px;background:linear-gradient(160deg,#16335a,var(--navy-dark) 75%)}
+.banner::after{content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;
   background:repeating-linear-gradient(118deg,transparent 0 42px,rgba(255,255,255,.02) 42px 43px)}
 .banner-inner{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
 .banner-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
-.back{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:#9fb2cc;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);cursor:pointer;font-family:inherit;
-  padding:8px 14px;border-radius:11px;transition:.18s var(--ease)}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:#9fb2cc;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);cursor:pointer;font-family:inherit;padding:8px 14px;border-radius:11px;transition:.18s var(--ease)}
 .back:hover{color:#fff;background:rgba(255,255,255,.13);gap:11px}
-.subj-banner h2{font-size:2rem;font-weight:700;letter-spacing:-.015em;display:flex;align-items:center;gap:13px}
-.subj-banner h2 .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:24px;
+.banner .crumb{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2)}
+.banner h2{font-size:1.95rem;font-weight:700;letter-spacing:-.015em;display:flex;align-items:center;gap:13px;margin-top:4px}
+.banner h2 .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:23px;
   background:color-mix(in srgb,var(--accent) 26%,transparent)}
-.subj-banner .st{color:#9fb2cc;font-size:.96rem;margin-top:6px}
-.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px}
-.legend span{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:#cbd8e8}
-.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.banner .st{color:#9fb2cc;font-size:.95rem;margin-top:6px}
 
-/* ---------- weeks ---------- */
-.weeks{display:flex;flex-direction:column;gap:16px;margin-top:24px}
-.week{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;animation:rise .45s var(--ease) both}
-.week-head{display:flex;align-items:center;gap:14px;padding:15px 22px;border-bottom:1px solid var(--border);
-  background:color-mix(in srgb,var(--ink) 3%,var(--card))}
-.week-n{font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);
-  padding:5px 11px;border-radius:999px;background:color-mix(in srgb,var(--blue) 12%,transparent);white-space:nowrap}
-.week-theme{font-weight:600;font-size:1.02rem}
-.phases{display:grid;grid-template-columns:repeat(3,1fr)}
-.phase{padding:18px 20px;border-right:1px solid var(--border);position:relative}
-.phase:last-child{border-right:none}
-.phase::before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:var(--pc)}
-.phase-build{--pc:var(--build)} .phase-grow{--pc:var(--grow)} .phase-launch{--pc:var(--launch)}
-.phase-label{font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--pc);
-  margin-bottom:9px;display:flex;align-items:center;gap:7px}
-.phase-label .n{opacity:.5;font-weight:700}
-.phase-focus{font-size:.92rem;color:var(--ink);margin-bottom:14px;min-height:40px}
-.slot-link{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:600;text-decoration:none;
-  color:#fff;background:var(--pc);padding:8px 14px;border-radius:10px;transition:.18s var(--ease)}
-.slot-link:hover{filter:brightness(1.07);transform:translateX(2px)}
-.slot-empty{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:500;color:var(--muted);
-  padding:8px 13px;border-radius:10px;border:1.5px dashed var(--border)}
-.slot-empty::before{content:"+";font-size:15px;line-height:1}
+/* item list */
+.items{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.item{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--card);border:1px solid var(--border);
+  border-radius:12px;animation:rise .4s var(--ease) both}
+.item .fic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:18px;flex-shrink:0;
+  background:color-mix(in srgb,var(--accent2) 16%,transparent)}
+.item .meta{flex:1;min-width:0}
+.item .title{font-weight:600;font-size:.98rem}
+.item .tag{display:inline-block;margin-top:3px;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--accent2);background:color-mix(in srgb,var(--accent2) 13%,transparent);padding:3px 9px;border-radius:999px}
+.item .open{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;text-decoration:none;color:#fff;
+  background:var(--accent2);padding:8px 14px;border-radius:10px;transition:.18s var(--ease);flex-shrink:0}
+.item .open:hover{filter:brightness(1.07);transform:translateX(2px)}
+.item .pending{font-size:.78rem;font-weight:500;color:var(--muted);border:1.5px dashed var(--border);padding:8px 13px;border-radius:10px;flex-shrink:0}
 
-/* ---------- empty ---------- */
-.empty{text-align:center;padding:58px 30px;border-radius:var(--radius);margin-top:24px;
-  border:1.5px dashed var(--border);background:var(--card)}
-.empty .em-ic{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;font-size:34px;margin:0 auto 16px;
-  background:color-mix(in srgb,var(--accent) 14%,transparent)}
-.empty h3{font-size:1.32rem;font-weight:700;margin-bottom:10px}
-.empty p{color:var(--muted);max-width:450px;margin:0 auto;font-size:.96rem}
+/* empty */
+.empty{text-align:center;padding:54px 30px;border-radius:var(--radius);margin-top:24px;border:1.5px dashed var(--border);background:var(--card)}
+.empty .em-ic{width:60px;height:60px;border-radius:15px;display:grid;place-items:center;font-size:30px;margin:0 auto 16px;
+  background:color-mix(in srgb,var(--accent2) 14%,transparent)}
+.empty h3{font-size:1.28rem;font-weight:700;margin-bottom:10px}
+.empty p{color:var(--muted);max-width:460px;margin:0 auto;font-size:.95rem}
+.empty code{background:color-mix(in srgb,var(--ink) 7%,transparent);padding:2px 7px;border-radius:6px;font-size:.86em}
 
-/* ---------- footer ---------- */
-.foot{max-width:1180px;margin:36px auto 0;padding:22px 24px;border-top:1px solid var(--border);
-  color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot{max-width:1180px;margin:36px auto 0;padding:22px 24px;border-top:1px solid var(--border);color:var(--muted);
+  font-size:.84rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media (max-width:680px){
+@media (max-width:760px){
   .hero{padding:24px 0 40px}
   .hero-top,.banner-top{flex-wrap:wrap}
-  .phases{grid-template-columns:1fr}
-  .phase{border-right:none;border-bottom:1px solid var(--border)}
-  .phase:last-child{border-bottom:none}
-  .week-head{flex-wrap:wrap}
-  .sec-head{flex-direction:column;gap:4px}
+  .folders{grid-template-columns:1fr}
+  .phase-head .blurb{margin-left:0;width:100%}
+  .item{flex-wrap:wrap}
 }
 </style>
 </head>
@@ -168,8 +142,8 @@ body{
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-text">Year Plan 2026–27 <b>·</b> Build → Grow → Launch, every week <b>·</b> Pick a subject to start planning <b>·</b> One plan · four subjects · their own spaces</span>
-    <span class="ticker-text">Year Plan 2026–27 <b>·</b> Build → Grow → Launch, every week <b>·</b> Pick a subject to start planning <b>·</b> One plan · four subjects · their own spaces</span>
+    <span class="ticker-text">Year Plan 2026–27 <b>·</b> Build → Grow → Launch <b>·</b> Plans · Slideshows · Resources <b>·</b> Open a folder to begin</span>
+    <span class="ticker-text">Year Plan 2026–27 <b>·</b> Build → Grow → Launch <b>·</b> Plans · Slideshows · Resources <b>·</b> Open a folder to begin</span>
   </div>
 </div>
 
@@ -182,41 +156,40 @@ body{
 
 <script>
 /* ============================================================
-   PLAN DATA — edit here to grow the year.
-   Each week has build / grow / launch.
-   To wire a lesson: set its "href" to the file's URL.
-   Empty href:"" shows the slot as "To plan".
+   PLAN DATA — edit here to fill the year.
+   Structure: phase (build/grow/launch) → folder (plans/slideshows/resources) → items[]
+   Each item: { title, subject, href }
+     • href "Launch/Art_L1_....html"  -> opens that file (relative to this page)
+     • href ""                         -> shows as "To plan"
    ============================================================ */
 const PLAN = {
   year:"2026–27",
-  subjects:[
-    {
-      id:"science", name:"Science", tag:"Edexcel IGCSE · 4SS0 Foundation",
-      icon:"🔬", accent:"#16a34a",
-      weeks:[
-        { n:1, theme:"Indicators & the pH scale",
-          build:{ focus:"Meet acids, alkalis and indicators", href:"https://mattroper1977.github.io/Lessons/" },
-          grow:{ focus:"Read the pH scale; place real samples", href:"" },
-          launch:{ focus:"Triage mystery solutions challenge", href:"" } },
-        { n:2, theme:"Ions & neutralisation",
-          build:{ focus:"Build the picture of what an ion is", href:"" },
-          grow:{ focus:"Neutralisation — acid + alkali → salt + water", href:"" },
-          launch:{ focus:"Plan and predict a neutralisation", href:"" } },
-        { n:3, theme:"Gas tests",
-          build:{ focus:"The four gas tests — set up the bench", href:"" },
-          grow:{ focus:"Run and record each test carefully", href:"" },
-          launch:{ focus:"Identify the unknown gases (Super Six)", href:"" } }
-      ]
-    },
-    { id:"art", name:"Art", tag:"Surrealism unit", icon:"🎨", accent:"#7c3aed", weeks:[] },
-    { id:"pshe", name:"PSHE / ASDAN", tag:"Personal development", icon:"🧭", accent:"#0d9488", weeks:[] },
-    { id:"outdoor", name:"Outdoor Education", tag:"Tees Trekkers · AQA Walking", icon:"⛰️", accent:"#f97316", weeks:[] }
+  phases:[
+    { id:"build", name:"Build", num:"01", blurb:"Introduce — lay the foundations", accent:"#2563eb",
+      folders:{ plans:[], slideshows:[], resources:[] } },
+
+    { id:"grow", name:"Grow", num:"02", blurb:"Develop — build skill and depth", accent:"#16a34a",
+      folders:{ plans:[], slideshows:[], resources:[] } },
+
+    { id:"launch", name:"Launch", num:"03", blurb:"Apply — show what they can do", accent:"#f97316",
+      folders:{
+        plans:[
+          { title:"Art L1 · Colours, Lines, Like Me", subject:"Art", href:"Launch/Art_L1_Colours_Lines_Like_Me_v5.html" },
+          { title:"Art L2 · My Identity Picture",      subject:"Art", href:"Launch/Art_L2_My_Identity_Picture_v5.html" }
+        ],
+        slideshows:[],
+        resources:[]
+      } }
   ]
 };
 
-const PHASE={ build:"Build", grow:"Grow", launch:"Launch" };
-const PHASE_N={ build:"01", grow:"02", launch:"03" };
+const FOLDERS=[
+  { id:"plans",      name:"Plans",      icon:"📋", fileIcon:"📄" },
+  { id:"slideshows", name:"Slideshows", icon:"🖥️", fileIcon:"🖼️" },
+  { id:"resources",  name:"Resources",  icon:"🧰", fileIcon:"📦" }
+];
 
+/* ---------- controls ---------- */
 function controls(){
   const dark=document.documentElement.getAttribute('data-theme')==='dark';
   return `<div class="controls">
@@ -225,44 +198,30 @@ function controls(){
     </div>`;
 }
 function bindControls(){
-  const b=document.getElementById('themeBtn');
-  if(!b) return;
+  const b=document.getElementById('themeBtn'); if(!b) return;
   b.addEventListener('click',()=>{
-    const root=document.documentElement;
-    root.setAttribute('data-theme', root.getAttribute('data-theme')==='dark'?'light':'dark');
-    b.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+    const r=document.documentElement;
+    r.setAttribute('data-theme', r.getAttribute('data-theme')==='dark'?'light':'dark');
+    b.textContent=r.getAttribute('data-theme')==='dark'?'☀️':'🌙';
   });
 }
 
-function slot(key,d){
-  const linked=d.href && d.href.trim();
-  const action=linked
-    ? `<a class="slot-link" href="${d.href}" target="_blank" rel="noopener">Open lesson →</a>`
-    : `<span class="slot-empty">To plan</span>`;
-  return `<div class="phase phase-${key}">
-      <div class="phase-label"><span class="n">${PHASE_N[key]}</span>${PHASE[key]}</div>
-      <div class="phase-focus">${d.focus||""}</div>
-      ${action}
-    </div>`;
-}
-function weekCard(w){
-  return `<article class="week">
-      <header class="week-head"><span class="week-n">Week ${w.n}</span><span class="week-theme">${w.theme}</span></header>
-      <div class="phases">${slot('build',w.build)}${slot('grow',w.grow)}${slot('launch',w.launch)}</div>
-    </article>`;
-}
-
+/* ---------- home ---------- */
 function showHome(){
-  const tiles=PLAN.subjects.map(s=>{
-    const c=s.weeks.length;
-    const status=c?`${c} week${c>1?'s':''} mapped`:"Ready to fill";
-    const cls=c?'':' soft';
-    return `<button class="tile" style="--accent:${s.accent}" data-id="${s.id}">
-        <span class="tile-icon">${s.icon}</span>
-        <span class="tile-name">${s.name}</span>
-        <span class="tile-tag">${s.tag}</span>
-        <span class="tile-status${cls}">${status}</span>
-      </button>`;
+  const sections=PLAN.phases.map(p=>{
+    const cards=FOLDERS.map(f=>{
+      const n=p.folders[f.id].length;
+      const count=n?`${n} item${n>1?'s':''}`:"Empty · ready";
+      return `<button class="folder" style="--accent:${p.accent}" data-phase="${p.id}" data-folder="${f.id}">
+          <span class="ic">${f.icon}</span>
+          <span class="fname">${f.name}</span>
+          <span class="count"><span>${count}</span><span class="chev">›</span></span>
+        </button>`;
+    }).join("");
+    return `<section class="phase-sec" style="--accent:${p.accent}">
+        <div class="phase-head"><span class="num">${p.num}</span><h2>${p.name}</h2><span class="blurb">${p.blurb}</span></div>
+        <div class="folders">${cards}</div>
+      </section>`;
   }).join("");
 
   document.getElementById('app').innerHTML=`
@@ -270,49 +229,56 @@ function showHome(){
       <div class="hero-inner">
         <div class="hero-top"><div class="eyebrow">Matt's Apps · Year Planner</div>${controls()}</div>
         <h1>Year <b>Plan</b></h1>
-        <p>One plan for the whole year. Pick a subject to open its space — every week runs the same rhythm: <b>Build</b> to introduce, <b>Grow</b> to develop, <b>Launch</b> to apply.</p>
+        <p>Three phases for the whole year — <b>Build</b>, <b>Grow</b> and <b>Launch</b>. Open a folder inside any phase to reach its <b>plans</b>, <b>slideshows</b> and <b>resources</b>.</p>
         <div class="stats">
-          <span class="stat">📚 ${PLAN.subjects.length} subjects</span>
-          <span class="stat">🗓️ Year ${PLAN.year}</span>
+          <span class="stat">🧱 3 phases</span>
+          <span class="stat">📁 9 folders</span>
           <span class="stat"><span class="ph"><i style="background:var(--build)"></i><i style="background:var(--grow)"></i><i style="background:var(--launch)"></i></span> Build · Grow · Launch</span>
         </div>
       </div>
     </section>
-    <div class="wrap">
-      <div class="sec-head"><h2>Subjects</h2><span>Each one organised its own way</span></div>
-      <div class="tiles">${tiles}</div>
-    </div>`;
+    <div class="wrap">${sections}</div>`;
 
-  document.querySelectorAll('.tile').forEach(t=>t.addEventListener('click',()=>showSubject(t.dataset.id)));
+  document.querySelectorAll('.folder').forEach(c=>c.addEventListener('click',()=>showFolder(c.dataset.phase,c.dataset.folder)));
   bindControls();
   window.scrollTo({top:0,behavior:'instant'});
 }
 
-function showSubject(id){
-  const s=PLAN.subjects.find(x=>x.id===id);
-  if(!s) return showHome();
-  const body=s.weeks.length
-    ? `<div class="wrap"><div class="weeks">${s.weeks.map(weekCard).join("")}</div></div>`
-    : `<div class="wrap"><div class="empty" style="--accent:${s.accent}">
-         <div class="em-ic">${s.icon}</div>
-         <h3>${s.name} is ready to fill</h3>
-         <p>Science is the worked example for now. Say the word and ${s.name} fills in with exactly the same rhythm — Build, Grow and Launch, every week of the year.</p>
-       </div></div>`;
+/* ---------- folder view ---------- */
+function showFolder(phaseId,folderId){
+  const p=PLAN.phases.find(x=>x.id===phaseId);
+  const f=FOLDERS.find(x=>x.id===folderId);
+  if(!p||!f) return showHome();
+  const items=p.folders[folderId];
+
+  const list=items.length
+    ? `<div class="items">${items.map(it=>{
+        const action=it.href&&it.href.trim()
+          ? `<a class="open" href="${it.href}" target="_blank" rel="noopener">Open →</a>`
+          : `<span class="pending">To plan</span>`;
+        const tag=it.subject?`<span class="tag">${it.subject}</span>`:"";
+        return `<div class="item">
+            <span class="fic">${f.fileIcon}</span>
+            <span class="meta"><span class="title">${it.title}</span><br>${tag}</span>
+            ${action}
+          </div>`;
+      }).join("")}</div>`
+    : `<div class="empty">
+         <div class="em-ic">${f.icon}</div>
+         <h3>No ${f.name.toLowerCase()} in ${p.name} yet</h3>
+         <p>Add items to <code>${p.name} → ${f.name}</code> in the plan data, or drop matching files into <code>${p.name}/${f.name}/</code> in the repo and link them here.</p>
+       </div>`;
 
   document.getElementById('app').innerHTML=`
-    <section class="subj-banner" style="--accent:${s.accent}">
+    <section class="banner" style="--accent:${p.accent};--accent2:${p.accent}">
       <div class="banner-inner">
-        <div class="banner-top"><button class="back" id="backBtn">← All subjects</button>${controls()}</div>
-        <h2><span class="ic">${s.icon}</span>${s.name}</h2>
-        <div class="st">${s.tag} · ${PLAN.year}</div>
-        <div class="legend">
-          <span><i style="background:var(--build)"></i> Build — introduce</span>
-          <span><i style="background:var(--grow)"></i> Grow — develop</span>
-          <span><i style="background:var(--launch)"></i> Launch — apply</span>
-        </div>
+        <div class="banner-top"><button class="back" id="backBtn">← All phases</button>${controls()}</div>
+        <div class="crumb">${p.name}</div>
+        <h2><span class="ic">${f.icon}</span>${f.name}</h2>
+        <div class="st">${p.blurb} · ${PLAN.year}</div>
       </div>
     </section>
-    ${body}`;
+    <div class="wrap" style="--accent2:${p.accent}">${list}</div>`;
 
   document.getElementById('backBtn').addEventListener('click',showHome);
   bindControls();
